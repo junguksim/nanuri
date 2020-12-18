@@ -14,11 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     userLatitude: DataTypes.DOUBLE,
     userName: DataTypes.STRING
   }, {});
-  users.associate = function(models) {
-    users.belongsToMany(models.rooms, {
-      "through" : "users_rooms",
-      "foreignKey" : "fk_userIdx",
-      "onDelete" : "cascade"
+  users.associate = function (models) {
+    users.hasMany(models.items, {
+      "foreignKey": "fk_userIdx",
+      "onDelete": "cascade"
     })
   };
   return users;
